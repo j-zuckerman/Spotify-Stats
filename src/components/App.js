@@ -8,6 +8,7 @@ import {
   fetchRecentlyPlayed
 } from '../actions';
 import { connect } from 'react-redux';
+import Playlists from './Playlists';
 
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
 // Replace with your app's client ID, redirect URI and desired scopes
@@ -67,6 +68,10 @@ class App extends Component {
           )}
           {this.props.profile && (
             <h1>Hello, {this.props.profile.display_name}</h1>
+          )}
+
+          {this.props.playlists && (
+            <Playlists data={this.props.playlists.items} />
           )}
         </header>
       </div>
