@@ -14,10 +14,14 @@ import TrackList from './TrackList';
 import ArtistList from './ArtistList';
 import RecentlyPlayedList from './RecentlyPlayedList';
 
+var redirectUri = '';
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
 // Replace with your app's client ID, redirect URI and desired scopes
 const clientId = 'd72d96a9dcab41c2852bc01b8c22aec6';
-const redirectUri = 'http://localhost:3000';
+if (process.env.NODE_ENV === 'development')
+  redirectUri = 'http://localhost:3000';
+else if (process.env.NODE_ENV === 'production')
+  redirectUri = 'https://react-spotify-db.herokuapp.com/';
 const scopes = [
   'user-read-email',
   'user-read-recently-played',
