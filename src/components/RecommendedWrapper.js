@@ -5,12 +5,6 @@ import styled from 'styled-components';
 import Recommended from './Recommended';
 
 const Title = styled.h1``;
-const Grid = styled.div`
-  margin: 1rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 1rem;
-`;
 
 var listOfTrackIDs = [];
 class RecommendedWrapper extends Component {
@@ -30,14 +24,13 @@ class RecommendedWrapper extends Component {
     return (
       <section>
         <Title>Recommended</Title>
-        <Grid>
-          {this.props.features && this.props.songIDs && (
-            <Recommended
-              features={this.props.features}
-              songIDs={this.props.songIDs}
-            />
-          )}
-        </Grid>
+
+        {this.props.features && this.props.songIDs && (
+          <Recommended
+            features={this.props.features}
+            songIDs={this.props.songIDs}
+          />
+        )}
       </section>
     );
   }

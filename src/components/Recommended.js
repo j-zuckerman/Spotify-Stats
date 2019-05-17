@@ -3,6 +3,13 @@ import { fetchRecommended } from '../actions';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
+const Grid = styled.div`
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
+`;
+
 const RecommendedAlbumImage = styled.img`
   width: 100%;
   height: auto;
@@ -15,6 +22,7 @@ const RecommendedDetails = styled.div`
 `;
 
 const ListenButton = styled.a`
+  display: block;
   padding: 0.5rem;
   border-radius: 0.6rem;
   color: white;
@@ -40,7 +48,7 @@ class Recommended extends Component {
     return (
       <div>
         {this.props.recommended && (
-          <div>
+          <Grid>
             {this.props.recommended.tracks.map(track => (
               <React.Fragment>
                 <RecommendedAlbumImage src={track.album.images[0].url} />
@@ -56,7 +64,7 @@ class Recommended extends Component {
                 </RecommendedDetails>
               </React.Fragment>
             ))}
-          </div>
+          </Grid>
         )}
       </div>
     );
