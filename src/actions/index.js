@@ -5,18 +5,6 @@ import hash from '../hash';
 
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
 
-const clientId = 'd72d96a9dcab41c2852bc01b8c22aec6';
-const redirectUri = 'http://localhost:3000'; //change later
-const scopes = [
-  'user-read-email',
-  'user-read-recently-played',
-  'user-library-read',
-  'user-follow-read',
-  'user-top-read',
-
-  'user-read-playback-state'
-];
-
 //Action creators
 export const fetchAccessToken = () => async dispatch => {
   let token = hash.access_token;
@@ -35,9 +23,53 @@ export const fetchUserProfile = token => async dispatch => {
 };
 
 //Fetch playlists
-
-//Fetch favorites
+export const fetchPlaylists = token => async dispatch => {
+  const response = await axios.get('https://api.spotify.com/v1/me/playlists', {
+    headers: {
+      Authorization: 'Bearer ' + token
+    }
+  });
+  console.log(response);
+  dispatch({ type: 'FETCH_PLAYLISTS', payload: response.data });
+};
 
 //Fetch top tracks
+export const fetchTopTracks = token => async dispatch => {
+  const response = await axios.get('https://api.spotify.com/v1/me/top/tracks', {
+    headers: {
+      Authorization: 'Bearer ' + token
+    }
+  });
+  console.log(response);
+  dispatch({ type: 'FETCH_TOP_TRACKS', payload: response.data });
+};
+
+//Fetch top artists
+export const fetchTopArtists = token => async dispatch => {
+  const response = await axios.get(
+    'https://api.spotify.com/v1/me/top/artists',
+    {
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    }
+  );
+  console.log(response);
+  dispatch({ type: 'FETCH_TOP_ARTISTS', payload: response.data });
+};
+
+//Fetch recently played
+export const fetchRecentlyPlayed = token => async dispatch => {
+  const response = await axios.get(
+    'https://api.spotify.com/v1/me/player/recently-played',
+    {
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    }
+  );
+  console.log(response);
+  dispatch({ type: 'FETCH_RECENTLY_PLAYED', payload: response.data });
+};
 
 //Fetch currently playing song
