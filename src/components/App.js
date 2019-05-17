@@ -12,6 +12,7 @@ import Playlists from './Playlists';
 import Navbar from './Navbar';
 import TrackList from './TrackList';
 import ArtistList from './ArtistList';
+import RecentlyPlayedList from './RecentlyPlayedList';
 
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
 // Replace with your app's client ID, redirect URI and desired scopes
@@ -77,6 +78,9 @@ class App extends Component {
 
           {this.props.tracks && <TrackList data={this.props.tracks.items} />}
           {this.props.artists && <ArtistList data={this.props.artists.items} />}
+          {this.props.recentlyPlayed && (
+            <RecentlyPlayedList data={this.props.recentlyPlayed.items} />
+          )}
         </header>
       </div>
     );
