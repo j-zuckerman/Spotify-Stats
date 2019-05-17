@@ -8,11 +8,14 @@ import {
   fetchRecentlyPlayed
 } from '../actions';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import Playlists from './Playlists';
 import Navbar from './Navbar';
 import TrackList from './TrackList';
 import ArtistList from './ArtistList';
 import RecentlyPlayedList from './RecentlyPlayedList';
+import bg from './bg.jpg';
+import RecommendedWrapper from './RecommendedWrapper';
 
 var redirectUri = '';
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
@@ -31,6 +34,47 @@ const scopes = [
   'playlist-read-private',
   'user-read-playback-state'
 ];
+
+const Landing = styled.div`
+  background: url(${bg}) no-repeat center center/cover;
+  height: 100vh;
+  position: relative;
+`;
+const Overlay = styled.div`
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
+const Details = styled.div`
+  height: 100%;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+`;
+const Description = styled.h2`
+  font-size: 1.8rem;
+`;
+const ConnectButton = styled.a`
+  text-transform: uppercase;
+  color: white;
+  background-color: #1db954;
+  padding: 0.5rem 1rem;
+  letter-spacing: 0.1rem;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.85;
+  }
+`;
 
 class App extends Component {
   constructor() {
@@ -62,30 +106,43 @@ class App extends Component {
     console.log(this.props.recentlyPlayed);
 
     return (
-      <div className="App">
-        <header className="App-header">
-          {!this.props.token && (
-            <a
-              className="btn btn--loginApp-link"
-              href={`${authEndpoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
-                '%20'
-              )}&response_type=token&show_dialog=true`}
-            >
-              Login to Spotify
-            </a>
-          )}
-          {this.props.profile && <Navbar data={this.props.profile} />}
+      <div>
+        {!this.props.token && (
+          <Landing>
+            <Overlay>
+              <Details>
+                <Description>
+                  A webapp which connects to your Spotify account. View your
+                  playlists, top tracks/artists, discover new music, and more!
+                </Description>
+                <ConnectButton
+                  href={`${authEndpoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
+                    '%20'
+                  )}&response_type=token&show_dialog=true`}
+                >
+                  Connect with spotify
+                </ConnectButton>
+              </Details>
+            </Overlay>
+          </Landing>
+        )}
+        {this.props.profile && <Navbar data={this.props.profile} />}
+        {this.props.tracks && this.props.recentlyPlayed && (
+          <RecommendedWrapper
+            tracks={this.props.tracks.items}
+            recentlyPlayed={this.props.recentlyPlayed.items}
+          />
+        )}
+        {this.props.playlists && (
+          <Playlists data={this.props.playlists.items} />
+        )}
 
-          {this.props.playlists && (
-            <Playlists data={this.props.playlists.items} />
-          )}
+        {this.props.tracks && <TrackList data={this.props.tracks.items} />}
+        {this.props.artists && <ArtistList data={this.props.artists.items} />}
 
-          {this.props.tracks && <TrackList data={this.props.tracks.items} />}
-          {this.props.artists && <ArtistList data={this.props.artists.items} />}
-          {this.props.recentlyPlayed && (
-            <RecentlyPlayedList data={this.props.recentlyPlayed.items} />
-          )}
-        </header>
+        {this.props.recentlyPlayed && (
+          <RecentlyPlayedList data={this.props.recentlyPlayed.items} />
+        )}
       </div>
     );
   }
