@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-const PlaylistImage = styled.img`
+const ArtistImage = styled.img`
   width: 100%;
   height: auto;
   border-radius: 0.5rem;
 `;
 
-const PlaylistDetails = styled.div`
+const ArtistDetails = styled.div`
   text-align: center;
-  padding: 1rem;
+  padding: 0.5rem;
 `;
 
-const ViewPlaylistButton = styled.a`
+const ViewArtistButton = styled.a`
   padding: 0.5rem;
   border-radius: 0.6rem;
   color: white;
@@ -24,23 +24,24 @@ const ViewPlaylistButton = styled.a`
     opacity: 0.8;
   }
 `;
-class Playlist extends Component {
+class Artist extends Component {
   render() {
     return (
       <div>
-        <PlaylistImage src={this.props.data.images[0].url} />
-        <PlaylistDetails>
-          <h2>{this.props.data.name}</h2>
-          <ViewPlaylistButton
+        <ArtistImage src={this.props.data.images[0].url} />
+        <ArtistDetails>
+          {this.props.data.name}
+
+          <ViewArtistButton
             href={this.props.data.external_urls.spotify}
             target="_blank"
           >
-            View Playlist
-          </ViewPlaylistButton>
-        </PlaylistDetails>
+            View Artist
+          </ViewArtistButton>
+        </ArtistDetails>
       </div>
     );
   }
 }
 
-export default Playlist;
+export default Artist;

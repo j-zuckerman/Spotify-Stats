@@ -9,6 +9,9 @@ import {
 } from '../actions';
 import { connect } from 'react-redux';
 import Playlists from './Playlists';
+import Navbar from './Navbar';
+import TrackList from './TrackList';
+import ArtistList from './ArtistList';
 
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
 // Replace with your app's client ID, redirect URI and desired scopes
@@ -66,13 +69,14 @@ class App extends Component {
               Login to Spotify
             </a>
           )}
-          {this.props.profile && (
-            <h1>Hello, {this.props.profile.display_name}</h1>
-          )}
+          {this.props.profile && <Navbar data={this.props.profile} />}
 
           {this.props.playlists && (
             <Playlists data={this.props.playlists.items} />
           )}
+
+          {this.props.tracks && <TrackList data={this.props.tracks.items} />}
+          {this.props.artists && <ArtistList data={this.props.artists.items} />}
         </header>
       </div>
     );
