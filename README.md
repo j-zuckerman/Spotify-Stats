@@ -7,6 +7,6 @@ You could view a live demo [here](https://react-spotify-db.herokuapp.com/).
 ## Technologies Used
 * [React](https://reactjs.org/)
 * [Redux](https://redux.js.org/)
-* [Styled Components](https://sass-lang.com/) 
+* [Styled Components](https://www.styled-components.com/docs/) 
 
 
