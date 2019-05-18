@@ -14,7 +14,7 @@ class Playlists extends Component {
         <Title>Playlists</Title>
         <Scroller>
           {this.props.data.map(playlist => (
-            <Playlist data={playlist} />
+            <Playlist key={playlist.id} data={playlist} />
           ))}
         </Scroller>
       </section>

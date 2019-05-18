@@ -10,7 +10,7 @@ class RecentlyPlayedList extends Component {
         <Title>Recently Played</Title>
         <Scroller>
           {this.props.data.map(recent => (
-            <RecentlyPlayed data={recent} />
+            <RecentlyPlayed key={recent.id} data={recent} />
           ))}
         </Scroller>
       </section>

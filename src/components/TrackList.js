@@ -10,7 +10,7 @@ class TrackList extends Component {
         <Title>Top Tracks</Title>
         <Scroller>
           {this.props.data.map(track => (
-            <Track data={track} />
+            <Track key={track.id} data={track} />
           ))}
         </Scroller>
       </section>

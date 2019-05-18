@@ -19,7 +19,7 @@ class Navbar extends Component {
     return (
       <Nav>
         <Title>
-          <i class="fab fa-spotify" /> Spotify Inspector
+          <i className="fab fa-spotify" /> Spotify Inspector
         </Title>
 
         <NavEnd>

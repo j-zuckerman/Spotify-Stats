@@ -16,6 +16,7 @@ import ArtistList from './ArtistList';
 import RecentlyPlayedList from './RecentlyPlayedList';
 import bg from './bg.jpg';
 import RecommendedWrapper from './RecommendedWrapper';
+import Footer from './Footer';
 
 var redirectUri = '';
 export const authEndpoint = 'https://accounts.spotify.com/authorize?';
@@ -79,18 +80,10 @@ const ConnectButton = styled.a`
 `;
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      token: null,
-      userDetails: null
-    };
-  }
   componentDidMount() {
     this.props.fetchAccessToken();
   }
   componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
     if (this.props.token !== prevProps.token) {
       this.props.fetchUserProfile(this.props.token);
       this.props.fetchPlaylists(this.props.token);
@@ -100,13 +93,6 @@ class App extends Component {
     }
   }
   render() {
-    console.log(this.props.token);
-    console.log(this.props.profile);
-    console.log(this.props.playlists);
-    console.log(this.props.tracks);
-    console.log(this.props.artists);
-    console.log(this.props.recentlyPlayed);
-
     return (
       <div>
         {!this.props.token && (
@@ -122,7 +108,7 @@ class App extends Component {
                     '%20'
                   )}&response_type=token&show_dialog=true`}
                 >
-                  <i class="fab fa-spotify" /> Connect with spotify
+                  <i className="fab fa-spotify" /> Connect with spotify
                 </ConnectButton>
               </Details>
             </Overlay>
@@ -143,7 +129,10 @@ class App extends Component {
         {this.props.artists && <ArtistList data={this.props.artists.items} />}
 
         {this.props.recentlyPlayed && (
-          <RecentlyPlayedList data={this.props.recentlyPlayed.items} />
+          <React.Fragment>
+            <RecentlyPlayedList data={this.props.recentlyPlayed.items} />
+            <Footer />
+          </React.Fragment>
         )}
       </div>
     );

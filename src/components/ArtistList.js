@@ -10,7 +10,7 @@ class ArtistList extends Component {
         <Title>Top Artists</Title>
         <Scroller>
           {this.props.data.map(artist => (
-            <Artist data={artist} />
+            <Artist key={artist.id} data={artist} />
           ))}
         </Scroller>
       </section>

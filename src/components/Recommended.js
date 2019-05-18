@@ -19,18 +19,16 @@ class Recommended extends Component {
         {this.props.recommended && (
           <Scroller>
             {this.props.recommended.tracks.map(track => (
-              <React.Fragment>
-                <Container>
-                  <Image src={track.album.images[0].url} />
-                  <Details>
-                    <Name>{track.name}</Name>
+              <Container key={track.id}>
+                <Image src={track.album.images[0].url} />
+                <Details>
+                  <Name>{track.name}</Name>
 
-                    <Button href={track.external_urls.spotify} target="_blank">
-                      Listen to Song
-                    </Button>
-                  </Details>
-                </Container>
-              </React.Fragment>
+                  <Button href={track.external_urls.spotify} target="_blank">
+                    Listen to Song
+                  </Button>
+                </Details>
+              </Container>
             ))}
           </Scroller>
         )}
