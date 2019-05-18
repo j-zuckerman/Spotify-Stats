@@ -18,7 +18,9 @@ class Navbar extends Component {
   render() {
     return (
       <Nav>
-        <Title>Spotify Dashboard</Title>
+        <Title>
+          <i class="fab fa-spotify" /> Spotify Inspector
+        </Title>
 
         <NavEnd>
           <h2>{this.props.data.display_name}</h2>

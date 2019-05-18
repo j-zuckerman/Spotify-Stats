@@ -3,8 +3,7 @@ import { fetchAccessToken, fetchAudioFeatures } from '../actions';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Recommended from './Recommended';
-
-const Title = styled.h1``;
+import { Title } from './style.js';
 
 var listOfTrackIDs = [];
 class RecommendedWrapper extends Component {

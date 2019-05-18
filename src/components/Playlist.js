@@ -1,44 +1,19 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Button, Details, Image, Name, Container } from './style.js';
 
-const PlaylistImage = styled.img`
-  width: 100%;
-  height: auto;
-  border-radius: 0.5rem;
-`;
-
-const PlaylistDetails = styled.div`
-  text-align: center;
-  padding: 1rem;
-`;
-
-const ViewPlaylistButton = styled.a`
-  padding: 0.5rem;
-  border-radius: 0.6rem;
-  color: white;
-  background-color: #21b75d;
-  margin-top: 1rem;
-  text-decoration: none;
-
-  &:hover {
-    opacity: 0.8;
-  }
-`;
 class Playlist extends Component {
   render() {
     return (
-      <div>
-        <PlaylistImage src={this.props.data.images[0].url} />
-        <PlaylistDetails>
-          <h2>{this.props.data.name}</h2>
-          <ViewPlaylistButton
-            href={this.props.data.external_urls.spotify}
-            target="_blank"
-          >
+      <Container>
+        <Image src={this.props.data.images[0].url} />
+        <Details>
+          <Name>{this.props.data.name}</Name>
+          <Button href={this.props.data.external_urls.spotify} target="_blank">
             View Playlist
-          </ViewPlaylistButton>
-        </PlaylistDetails>
-      </div>
+          </Button>
+        </Details>
+      </Container>
     );
   }
 }

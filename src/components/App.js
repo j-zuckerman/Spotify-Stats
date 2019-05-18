@@ -59,9 +59,11 @@ const Details = styled.div`
   text-align: center;
 `;
 const Description = styled.h2`
-  font-size: 1.8rem;
+  font-size: 2.2rem;
+  font-weight: 200;
 `;
 const ConnectButton = styled.a`
+  margin-top: 1rem;
   text-transform: uppercase;
   color: white;
   background-color: #1db954;
@@ -120,7 +122,7 @@ class App extends Component {
                     '%20'
                   )}&response_type=token&show_dialog=true`}
                 >
-                  Connect with spotify
+                  <i class="fab fa-spotify" /> Connect with spotify
                 </ConnectButton>
               </Details>
             </Overlay>

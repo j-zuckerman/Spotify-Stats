@@ -11,4 +11,9 @@ html {
   color: white;
   font-weight: 200;
   font-family: 'Roboto Condensed', sans-serif;
+  overflow-x: hidden;
+}
+
+-webkit-scrollbar {
+  display: none;
 }
